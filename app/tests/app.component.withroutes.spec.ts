@@ -7,19 +7,14 @@ import { DebugElement } from '@angular/core';
 import { Router, RouterModule, Routes } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { AppComponent } from './app.component';
-
-/*@Component({
-    template:''
-})*/
+import { AppComponent } from '../app.component';
 
 @NgModule({
-    declarations: [MockLoginComponent],
-    exports:      [MockLoginComponent]
+    declarations: [AppComponentModule],
+    exports:      [AppComponentModule]
 })
 
-class MockLoginComponent { }
-class MockModule { }
+class AppComponentModule { }
 
 describe('AppComponentWithRoutes', function () {
         let de: DebugElement;
@@ -35,7 +30,7 @@ describe('AppComponentWithRoutes', function () {
                     RouterTestingModule.withRoutes([
                         {
                             path: 'heroes',
-                            component: MockLoginComponent
+                            component: AppComponentModule
                         }
                     ]),
                 ]
