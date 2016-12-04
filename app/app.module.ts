@@ -5,6 +5,8 @@ import { HttpModule }    from '@angular/http';
 
 import { AppRoutingModule }     from './app-routing.module';
 
+import './rxjs-extensions';
+
 // todo: replace with server api - Imports for loading & configuring the in-memory web api
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-data.service';
@@ -13,6 +15,7 @@ import { AppComponent }         from './app.component';
 import { DashboardComponent }   from './dashboard.component';
 import { HeroDetailComponent }  from './hero-detail.component';
 import { HeroesComponent }      from './hero.component';
+import { HeroSearchComponent }      from './hero-search.component';
 import { HeroService }          from './hero.service';
 
 @NgModule({
@@ -27,7 +30,8 @@ import { HeroService }          from './hero.service';
     AppComponent,
     DashboardComponent,
     HeroDetailComponent,
-    HeroesComponent
+    HeroesComponent,
+    HeroSearchComponent
   ],
   providers: [ HeroService ],
   bootstrap: [ AppComponent ]
