@@ -1,74 +1,70 @@
-
+//http://blog.thoughtram.io/angular/2016/11/28/testing-services-with-http-in-angular-2.html
+//https://angular.io/docs/ts/latest/testing/
+//https://github.com/krimple/angular2-unittest-samples-release/blob/master/src/app/services/blog.service.spec.ts
+import { TestBed, async, inject } from '@angular/core/testing';
 import {
-  TestBed,
-  getTestBed,
-  async,
-  inject
-} from '@angular/core/testing';
-import {
-  Headers, BaseRequestOptions,
-  Response, HttpModule, Http, XHRBackend, RequestMethod
+  BaseRequestOptions,
+  HttpModule,
+  Http,
+  Response,
+  ResponseOptions
 } from '@angular/http';
-
-import {ResponseOptions} from '@angular/http';
-import {MockBackend, MockConnection} from '@angular/http/testing';
-
+import { MockBackend } from '@angular/http/testing';
+import { HeroSearchService  } from '../hero-search.service';
 import 'rxjs/add/operator/map'
+describe('Hero Search Service Tests', () => {
 
-import { HeroSearchService } from '../hero-search.service';
-import { Hero }           from '../hero';
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpModule],
+      providers: [
+        HeroSearchService,
+        {
+          provide: Http,
+          useFactory: (mockBackend:MockBackend, options:BaseRequestOptions) => {
+            return new Http(mockBackend, options);
+          },
+          deps: [MockBackend, BaseRequestOptions]
+        },
+        MockBackend,
+        BaseRequestOptions
+      ]
+    });
+  });
 
-describe('Hero search service', function () {
-    let mockedService: MockBackend;
+  describe('Search heroes search(string:term)', () => {
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-        providers: [
-            HeroSearchService,
-            MockBackend,
-            BaseRequestOptions,
-            {
-            provide: Http,
-            deps: [MockBackend, BaseRequestOptions],
-            useFactory:
-                (backend: XHRBackend, defaultOptions: BaseRequestOptions) => {
-                return new Http(backend, defaultOptions);
-                }
-        }
-        ],
-        imports: [
-            HttpModule
-        ]
-        });
-        
-        mockedService = getTestBed().get(MockBackend);
-    
-    }));
+    it('should return an Observable<Array<Hero>>',
+        async(inject([HeroSearchService, MockBackend], 
+                    (heroSearchService:HeroSearchService, mockBackend:MockBackend) => {
 
-    it('should get Heroes async',
-    async(inject([HeroSearchService], (heroService) => {
-      mockedService.connections.subscribe(
-        (connection: MockConnection) => {
-          connection.mockRespond(new Response(
-            new ResponseOptions({
-                body: [
-                  {
-                    id: 26,
-                    contentRendered: '<p><b>Hi there</b></p>',
-                    contentMarkdown: '*Hi there*'
-                  }]
-              }
-            )));
+        heroSearchService.search("ma").subscribe((heroes) => {
+          expect(heroes.length).toBe(2);
+          expect(heroes[0].name).toEqual('Magneta');
+          expect(heroes[1].name).toEqual('Magma');
         });
 
-        heroService.search("ma").subscribe(
-            ( data) => {
-            expect(data.length).toBe(1);
-            expect(data[0].id).toBe(26);
-            expect(data[0].contentMarkdown).toBe('*Hi there*');
-        });
-    }))
-    
-    );
+        const mockResponse = {
+          data: [
+            {id: 11, name: 'Mr. Nice'},
+            {id: 12, name: 'Narco'},
+            {id: 13, name: 'Bombasto'},
+            {id: 14, name: 'Celeritas'},
+            {id: 15, name: 'Magneta'},
+            {id: 16, name: 'RubberMan'},
+            {id: 17, name: 'Dynama'},
+            {id: 18, name: 'Dr IQ'},
+            {id: 19, name: 'Magma'},
+            {id: 20, name: 'Tornado'}
+         ]
+        };
 
+        mockBackend.connections.subscribe((connection:any) => {
+          connection.mockRespond(new Response(new ResponseOptions({
+            body: JSON.stringify(mockResponse)
+          })));
+        });
+
+    })));
+  });
 });
