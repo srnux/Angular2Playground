@@ -10,21 +10,25 @@ import './rxjs-extensions';
 // todo: replace with server api - Imports for loading & configuring the in-memory web api
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-data.service';
+//import { InMemoryActivityService }  from './in-memory-data.service';
 
 import { AppComponent }         from './app.component';
 import { DashboardComponent }   from './dashboard.component';
 import { HeroDetailComponent }  from './hero-detail.component';
 import { HeroesComponent }      from './hero.component';
-import { HeroSearchComponent }      from './hero-search.component';
+import { HeroSearchComponent }  from './hero-search.component';
 import { HeroService }          from './hero.service';
+
+import { ActivityModule } from './activities/activity.module';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService),
-    AppRoutingModule
+    //InMemoryWebApiModule.forRoot(InMemoryDataService),
+    AppRoutingModule,
+    ActivityModule
   ],
   declarations: [
     AppComponent,

@@ -1,0 +1,23 @@
+<!--  -->
+<h2>My Activities</h2>
+<ul class="activities">
+  <li *ngFor="let activity of activities" (click)="onSelect(activity)" [class.selected]="activity === selectedactivity">
+    <span class="badge">{{activity.id}}</span>
+    <span>{{activity.name}}</span>
+    <span>{{activity.desc}}</span>
+    <button class="delete" (click)="delete(activity); $event.stopPropagation()">x</button>
+  </li>
+</ul>
+<div>
+  <label>Activity name:</label> <input #activityName />
+  <label>description:</label> <input #activityDescription />
+  <button (click)="add(activityName.value,activityDescription.value); activityName.value=''; activityDescription.value=''">
+    Add
+  </button>
+</div>
+<div *ngIf="selectedactivity">
+  <h2>
+    {{selectedactivity.name | uppercase}} is my activity
+  </h2>
+  <button (click)="gotoDetail()">View Details</button>
+</div>
