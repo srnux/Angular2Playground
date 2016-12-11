@@ -9,22 +9,25 @@ import '../rxjs-extensions';
 
 // todo: replace with server api - Imports for loading & configuring the in-memory web api
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryActivityService }  from './in-memory-activities.service';
-//import { InMemoryActivityService }  from '../in-memory-data.service';
+//import { InMemoryActivityService }  from './in-memory-activities.service';
+import { InMemoryDataService }  from '../in-memory-data.service';
 
 import { ActivityComponent }          from './activity.component';
 import { ActivityService }          from './activity.service';
+import { PopupDirective} from '../directives/popup.directive'
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    InMemoryWebApiModule.forRoot(InMemoryActivityService),
+    InMemoryWebApiModule.forRoot(InMemoryDataService),
     AppRoutingModule
   ],
   declarations: [
-    ActivityComponent
+    ActivityComponent,
+    PopupDirective
+
   ],
   providers: [ ActivityService ],
   exports:[

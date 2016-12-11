@@ -10,7 +10,7 @@ import { Activity } from './activity.model';
   moduleId: module.id,
   selector: 'activities',
   templateUrl: 'activity.component.html',
-  styleUrls: [ '../hero-search.component.css' ],
+  styleUrls: [ 'activity.component.css' ],
   providers: [ActivityService]
 })
 

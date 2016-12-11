@@ -2,9 +2,10 @@
 <h2>My Activities</h2>
 <ul class="activities">
   <li *ngFor="let activity of activities" (click)="onSelect(activity)" [class.selected]="activity === selectedactivity">
-    <span class="badge">{{activity.id}}</span>
-    <span>{{activity.name}}</span>
-    <span>{{activity.desc}}</span>
+    <span popup class="badge">{{activity.id}}</span>
+    <span popup class="tooltip">{{activity.name}}
+      <span class="tooltiptext tooltip-right">{{activity.desc}}</span>
+    </span>
     <button class="delete" (click)="delete(activity); $event.stopPropagation()">x</button>
   </li>
 </ul>

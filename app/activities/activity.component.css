@@ -1,0 +1,90 @@
+.selected {
+      background-color: #CFD8DC !important;
+      color: white;
+    }
+    .activities {
+      margin: 0 0 2em 0;
+      list-style-type: none;
+      padding: 0;
+      width: 15em;
+    }
+    .activities li {
+      cursor: pointer;
+      position: relative;
+      left: 0;
+      background-color: #EEE;
+      margin: .5em;
+      padding: .3em 0;
+      height: 1.6em;
+      border-radius: 4px;
+    }
+    .activities li.selected:hover {
+      background-color: #BBD8DC !important;
+      color: white;
+    }
+    .activities li:hover {
+      color: #607D8B;
+      background-color: #DDD;
+      left: .1em;
+    }
+    .activities .text {
+      position: relative;
+      top: -3px;
+    }
+    .activities .badge {
+      display: inline-block;
+      font-size: small;
+      color: white;
+      padding: 0.8em 0.7em 0 0.7em;
+      background-color: #607D8B;
+      line-height: 1em;
+      position: relative;
+      left: -1px;
+      top: -4px;
+      height: 1.8em;
+      margin-right: .8em;
+      border-radius: 4px 0 0 4px;
+    }
+
+    button.delete {
+      float:right;
+      margin-top: 2px;
+      margin-right: .8em;
+      background-color: gray !important;
+      color:white;
+    }
+
+
+
+    /*tooltip*/
+    /* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+ 
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;   
+}
+    
+    .tooltip-right {
+    top: -5px;
+    left: 125%;
+}

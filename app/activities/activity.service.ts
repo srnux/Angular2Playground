@@ -12,9 +12,6 @@ export class ActivityService {
     getActivities(): Observable<Activity[]>{
         return this.http
                 .get(this.activitiesUrl)
-                .map((r: Response) => {
-                    alert(r.json().data);
-                    r.json().data as Activity[]            
-                });
+                .map((r: Response) => r.json().data as Activity[] );
     }
 }
