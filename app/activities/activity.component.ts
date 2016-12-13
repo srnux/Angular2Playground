@@ -19,6 +19,15 @@ export class ActivityComponent implements OnInit {
   constructor(
     private activityService: ActivityService,
     private router: Router) {}
+    
+  ngOnInit(): void {
+    this.loadActivities();
+  }
+  
+  gotoDetail(activity: Activity): void {
+    let link = ['/detail', activity.id];
+    this.router.navigate(link);
+  }
 
   loadActivities(){
         this.activityService.getActivities()
@@ -31,14 +40,5 @@ export class ActivityComponent implements OnInit {
                                     // Log errors if any
                                     console.log(err);
                                 });
-  }
-
-  ngOnInit(): void {
-    this.loadActivities();
-  }
-  
-  gotoDetail(activity: Activity): void {
-    let link = ['/detail', activity.id];
-    this.router.navigate(link);
   }
 }
