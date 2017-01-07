@@ -1,6 +1,6 @@
 import { NgModule }       from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
-import { FormsModule }    from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }  from '@angular/forms';
 import { HttpModule }    from '@angular/http';
 
 import { AppRoutingModule }     from '../app-routing.module';
@@ -12,22 +12,27 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 //import { InMemoryActivityService }  from './in-memory-activities.service';
 import { InMemoryDataService }  from '../in-memory-data.service';
 
+import 'hammerjs';
+import { MaterialModule } from '@angular/material';
+
 import { ActivityComponent }          from './activity.component';
 import { ActivityService }          from './activity.service';
-import { PopupDirective} from '../directives/popup.directive'
+// import { PopupDirective} from '../directives/popup.directive'
+import { ActivityFormComponent } from './activity-form.component';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     InMemoryWebApiModule.forRoot(InMemoryDataService),
-    AppRoutingModule
+    AppRoutingModule,
+    MaterialModule.forRoot(),
   ],
   declarations: [
     ActivityComponent,
-    PopupDirective
-
+    ActivityFormComponent
   ],
   providers: [ ActivityService ],
   exports:[

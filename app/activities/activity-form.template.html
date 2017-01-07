@@ -1,0 +1,65 @@
+<form (ngSubmit)="processForm()" [formGroup]="form">
+<md-card>
+    <button md-raised-button color="primary">PRIMARY</button>
+    <button md-raised-button color="accent">ACCENT</button>
+    <button md-raised-button color="warn">WARN</button>
+  </md-card>
+<md-card>
+<button md-button>FLAT</button>
+<button md-raised-button>RAISED</button>
+</md-card>
+<md-card>
+<md-checkbox [checked]="true" align="end">
+  I come after my label.
+</md-checkbox>
+</md-card>
+<md-card>
+<md-input-container>
+    <div class="form-group">
+        <!--<label for="activityName">Activity Name</label>-->
+        
+        <input md-input type="text" class="form-control" 
+            placeholder="Activity Name"
+            name="activityName" required
+            formControlName="activityName">
+          
+        <span class="help-block" *ngIf="formErrors.activityName">
+            {{ formErrors.activityName }}
+        </span>
+    </div>
+</md-input-container>  
+
+<md-input-container>
+    <div class="form-group">
+        <!--<label for="description">Description</label>-->
+        <input md-input type="text" class="form-control" 
+            placeholder="Description"    
+            name="description" required
+            formControlName="description">
+
+        <span class="help-block" *ngIf="formErrors.description">
+            {{ formErrors.description }}
+        </span>
+    </div>
+</md-input-container>
+</md-card>
+<md-input-container>
+    <div class="form-group">
+        <!--<label for="username">Username</label>-->
+        <input md-input type="text" class="form-control" 
+            placeholder="Username"
+            name="username" required
+            formControlName="username">
+
+        <span class="help-block" *ngIf="formErrors.username">
+            {{ formErrors.username }}
+        </span>
+    </div>
+</md-input-container>
+    <div class="form-group">
+        <button type="submit" class="btn btn-danger">Submit</button>
+        <button md-mini-fab ><md-icon>check</md-icon></button> 
+        <!--[disabled]="isDisabled"-->
+    </div>
+
+</form>

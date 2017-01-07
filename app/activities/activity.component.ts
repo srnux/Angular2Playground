@@ -16,6 +16,7 @@ import { Activity } from './activity.model';
 
 export class ActivityComponent implements OnInit {
   activities: Activity[];
+  selectedActivity: Activity;
   constructor(
     private activityService: ActivityService,
     private router: Router) {}
@@ -40,5 +41,15 @@ export class ActivityComponent implements OnInit {
                                     // Log errors if any
                                     console.log(err);
                                 });
+  }
+
+  add(name: string): void {
+    name = name.trim();
+    if (!name) { return; }
+    this.activityService.create(name)
+      .then(activity => {
+        this.activities.push(activity);
+        this.selectedActivity = null;
+      });
   }
 }
