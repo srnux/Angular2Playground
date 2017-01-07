@@ -1,3 +1,27 @@
+<md-card>
+<button md-icon-button [mdMenuTriggerFor]="menu">
+  <md-icon>more_vert</md-icon>
+</button>
+<md-menu #menu="mdMenu">
+  <button md-menu-item>
+    <md-icon>dialpad</md-icon>
+    <span>Redial</span>
+  </button>
+  <button md-menu-item disabled>
+    <md-icon>voicemail</md-icon>
+    <span>Check voicemail</span>
+  </button>
+  <button md-menu-item>
+    <md-icon>notifications_off</md-icon>
+    <span>Disable alerts</span>
+  </button>
+  <button md-menu-item>
+    <md-icon>wifi</md-icon>
+    <span>Wifi signal</span>
+  </button>
+</md-menu>
+</md-card>
+
 <form (ngSubmit)="processForm()" [formGroup]="form">
 <md-card>
     <button md-raised-button color="primary">PRIMARY</button>
@@ -42,7 +66,45 @@
         </span>
     </div>
 </md-input-container>
+
+<md-slider min="1" max="5" step="0.5" value="1.5"></md-slider>
 </md-card>
+
+<md-card class="result">
+  <md-card-content>
+    <md-slider
+        class="example-margin"
+        [max]="100"
+        [min]="0"
+        [step]="5"
+        [thumb-label]="true"
+        [tick-interval]="2"
+        [value]="1">
+    </md-slider>
+  </md-card-content>
+</md-card>
+
+<md-card>
+    <md-list>
+        <md-list-item *ngFor="let folder of folders" drag [dragData]="folder">
+            <md-icon md-list-avatar>folder</md-icon>
+            <h4 md-line >{{folder.name}}</h4>
+        </md-list-item>
+    </md-list>
+</md-card>
+<md-card>
+    <div drop (onDrop)="onDrop($event)">
+        <h3>Added to list</h3>
+        <md-list>
+        <md-list-item *ngFor="let folder of addedFolders" drag [dragData]="folder">
+            <md-icon md-list-avatar>folder</md-icon>
+            <h4 md-line >{{folder.name}}</h4>
+        </md-list-item>
+    </md-list>
+    </div>
+</md-card>
+
+<md-card>
 <md-input-container>
     <div class="form-group">
         <!--<label for="username">Username</label>-->
@@ -56,9 +118,9 @@
         </span>
     </div>
 </md-input-container>
+</md-card>
     <div class="form-group">
-        <button type="submit" class="btn btn-danger">Submit</button>
-        <button md-mini-fab ><md-icon>check</md-icon></button> 
+        <button md-raised-button type="submit"><md-icon>check</md-icon></button> 
         <!--[disabled]="isDisabled"-->
     </div>
 

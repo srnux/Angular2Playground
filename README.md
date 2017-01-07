@@ -32,6 +32,9 @@ https://github.com/valor-software/ng2-dragula
 Material design:
 https://github.com/angular/material2/blob/master/guides/getting-started.md
 
+Material icons:
+https://material.io/icons/
+
 Attention, pretty outdated but still usefull
 https://medium.com/codingthesmartway-com-blog/using-material-design-in-angular-2-83a3128c58b7#.s2v8hooil
 

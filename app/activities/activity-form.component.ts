@@ -27,6 +27,27 @@ export class ActivityFormComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {}
 
+  folders= [
+      {name: 'Photos'},
+      {name: 'Docs'},
+      {name: 'Games'},
+      {name: 'Work'}
+    ];
+
+  addedFolders= [];
+
+  onDrop(e: any) {
+        this.addedFolders.push(e.dragData);
+        this.removeItem(e.dragData, this.folders);
+    }
+
+    removeItem(item: any, list: Array<any>) {
+        let index = list.map((e) => {
+            return e.name
+        }).indexOf(item.name);
+        list.splice(index, 1);
+    }
+
   ngOnInit() {
     // build the data model for our form
     this.buildForm();

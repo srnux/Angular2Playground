@@ -20,6 +20,9 @@ import { ActivityService }          from './activity.service';
 // import { PopupDirective} from '../directives/popup.directive'
 import { ActivityFormComponent } from './activity-form.component';
 
+import {Drag} from "../directives/drag.directive";
+import {Drop} from "../directives/drop.directive";
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -32,7 +35,9 @@ import { ActivityFormComponent } from './activity-form.component';
   ],
   declarations: [
     ActivityComponent,
-    ActivityFormComponent
+    ActivityFormComponent,
+    Drag,
+    Drop
   ],
   providers: [ ActivityService ],
   exports:[
